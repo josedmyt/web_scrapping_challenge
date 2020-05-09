@@ -43,14 +43,12 @@
             <div class="panel-heading"><h1>Mars Hemispheres</h1></div>
             <div class="panel-body">
               {% for item in data.basic_info %}
-              <div class="row">
                 <div class= "panel panel-default col-md-6">
                   <div class="panel-heading"><h1>{{item.title }}</h1></div>
                   <div class="panel-body">
                     <img src="{{ item.link}}" alt="mars pic" width="500">
                   </div>
                 </div>
-              </div>
               {% endfor %}
                 <!-- <div class= "panel panel-default col-md-6">
                   <div class="panel-heading"><h1>{{data.basic_info}}</h1></div>
