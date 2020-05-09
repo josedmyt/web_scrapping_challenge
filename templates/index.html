@@ -18,14 +18,14 @@
 
     <div class= col-md-12>
       <h2>Latest Mars News</h2>
-      <h3>{{ data.article[0][0] }}</h3>
-      <h3>{{ data.article[1][0] }}</h3>
-      <h3>From: {{ data.article[2][0] }}</h3>
+      <h3>{{ data.article_title }}</h3>
+      <h3>{{ data.article_description}}</h3>
+      <h3>From: {{ data.article_date }}</h3>
     </div>
     <div class="row">
       <div class=col-md-8>
         <h2>Featured Mars Image</h2>
-        <img src="{{ data.image_url }}" alt="mars pic">
+        <img src="{{ data.image_url }}" alt="mars pic" width="500">
       </div>
       <div class=col-md-4>
         <h3>Current Weather on Mars</h3>
@@ -42,35 +42,38 @@
         <div class="panel panel-default">
             <div class="panel-heading"><h1>Mars Hemispheres</h1></div>
             <div class="panel-body">
+              {% for item in data.basic_info %}
               <div class="row">
                 <div class= "panel panel-default col-md-6">
-                  <div class="panel-heading"><h1>{{ data.basic_info.title[0] }}</h1></div>
+                  <div class="panel-heading"><h1>{{item.title }}</h1></div>
                   <div class="panel-body">
-                    <img src="{{ data.basic_info.link[0] }}" alt="mars pic">
+                    <img src="{{ item.link}}" alt="mars pic" width="500">
                   </div>
                 </div>
-                <div class= "panel panel-default col-md-6">
-                  <div class="panel-heading"><h1>{{data.basic_info.title[1]}}</h1></div>
+              </div>
+              {% endfor %}
+                <!-- <div class= "panel panel-default col-md-6">
+                  <div class="panel-heading"><h1>{{data.basic_info}}</h1></div>
                   <div class="panel-body">
-                    <img src="{{ data.basic_info.link[1] }}" alt="mars pic">
+                    <img src="{{ data.basic_info}}" alt="mars pic">
                   </div>
                 </div>
               </div>
 
               <div class="row">
                 <div class= "panel panel-default col-md-6">
-                  <div class="panel-heading"><h1>{{ data.basic_info.title[2] }}</h1></div>
+                  <div class="panel-heading"><h1>{{ data.basic_info }}</h1></div>
                   <div class="panel-body">
-                    <img src="{{ data.basic_info.link[2] }}" alt="mars pic">
+                    <img src="{{ data.basic_info }}" alt="mars pic">
                   </div>
                 </div>
                 <div class= "panel panel-default col-md-6">
-                  <div class="panel-heading"><h1>{{data.basic_info.title[3]}}</h1></div>
+                  <div class="panel-heading"><h1>{{data.basic_info}}</h1></div>
                   <div class="panel-body">
-                    <img src="{{ data.basic_info.link[3] }}" alt="mars pic">
+                    <img src="{{ data.basic_info }}" alt="mars pic">
                   </div>
                 </div>
-              </div>
+              </div> -->
 
             </div>
         </div>

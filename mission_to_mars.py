@@ -16,13 +16,11 @@ def scrape():
     time.sleep(1)
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
-    title2=[]
-    description=[]
-    date=[]
+
     posting = soup.find('div', class_='image_and_description_container')
-    title2.append(posting.find('div',class_='list_text').find('div',class_='content_title').text)
-    description.append(posting.find('div',class_='list_text').find('div', class_='article_teaser_body').text.strip('\n'))
-    date.append(posting.find('div',class_='list_text').find('div', class_='list_date').text)
+    title2=(posting.find('div',class_='list_text').find('div',class_='content_title').text)
+    description=(posting.find('div',class_='list_text').find('div', class_='article_teaser_body').text.strip('\n'))
+    date=(posting.find('div',class_='list_text').find('div', class_='list_date').text)
 
 
     url='https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
@@ -58,20 +56,28 @@ def scrape():
     url='https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(url)
     time.sleep(1)
-    title=[]
-    link=[]
+    basic_info=[]
     for i in range(4):
         browser.find_by_css('.thumb')[i].click()
         pic=soup.find('div','downloads' )
         html = browser.html
         soup = BeautifulSoup(html, 'html.parser')       
         pic=soup.find('div','downloads' ).find('ul').find('li').find('a')
-        link.append(pic.get('href'))
-        title.append(soup.find('h2', class_='title').text)
+        link=(pic.get('href'))
+        title=(soup.find('h2', class_='title').text)
+        dic1={"title":title, "link":link}
+        basic_info.append(dic1)
         browser.visit(url)
 
     browser.quit()
 
-    final_dictionary={'article':[title2,description,date],'image_url': featured_image_url,'weather_tweet':tweet,'table_html_code':table_html,'basic_info':{"title":title,"link":link}}
+    final_dictionary={
+        'article_title':title2,
+        'article_description':description,
+        'article_date': date,
+        'image_url': featured_image_url,
+        'weather_tweet':tweet,
+        'table_html_code':table_html,
+        'basic_info': basic_info}
 
     return(final_dictionary)

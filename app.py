@@ -12,7 +12,6 @@ collection = db.info_scraped
 @app.route("/")
 def home():
     data= collection.find_one()
-
     return render_template("index.html", data=data)
 
 @app.route("/scrape")
